@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="icon" type="image/x-icon" href="./images/favicon.png" />
+        <!-- css bootstrap -->
+        <!-- <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css
+        "
+        /> -->
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    </head>
+     <body>
+    <div>
+        <nav class="navbar navbar-default newnav">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button
+                        type="button"
+                        class="navbar-toggle"
+                        data-toggle="collapse"
+                        data-target="#myNavbar"
+                    >
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand fs-1" href="#">LEARN WING</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Categories</a></li>
+                        
+                        <li><a href="#">My Courses</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                  
+                        <li><a href="{% url 'registerpage' %}">Sign Up</a></li>
+                        <li><a href="{% url 'loginpage' %}">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container-fluid main-div p-0 mb-5">
+        <div class="title row mt-5">
+            
+           
+        </div>
+        <div class="row">
+            <div><form action="{% url 'search' %}" method="GET">
+            <input type="search" name="search" id="" placeholder="search">
+            <input type="submit" value="search">
+        </form></div>
+        </div>
+    </div>
+
+
+    
+        {% comment %} <div class="container margin">
+             <div class="suggestion row px-3 m-0">
+          {% for i in results %}
+              
+            
+                <div class="col-12 col-sm-3 d-flex justify-content-center">
+                    <div class="card" style="width: 85%;">
+                        <img src="{{ i.course_image.url }}" class="card-img-top" width="250px" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">
+                            {{i.course_title}}
+                          </h5>
+                          <p class="card-text">
+                            {{i.course_desc}}
+
+                          </p>
+                          <a href="{% url 'course' i.id %}"class="btn btn-primary">Go somewhere</a>
+                        </div>
+                      </div>
+                </div>
+                  {% endfor %}
+        </div> {% endcomment %}
+        <div class="container margin">
+          <div class="suggestion row px-3 m-0">
+          {% for i in course %}
+            <div class="col-12 mb-5 col-sm-3 d-flex justify-content-evenly">
+                <div class="card" style="width: 85%;">
+                    <img src="{{ i.course_image.url }}" class="card-img-top" width="250px" alt="...">
+                    <div class="card-body text-justify ">
+                      <h5 class="card-title">
+                        {{i.course_title}}
+                      </h5>
+                      <p class="card-text">
+                        {{i.course_desc}}
+                      </p>
+                      <a href="{% url 'course' i.id %}"class="btn p-0 m-0 btn-primary mb-5">View Details</a>
+
+                    </div>
+                </div>
+            </div>
+          {% endfor %}
+            
+        </div>
+
+           <div class="suggestion row px-3 m-0">
+          {% for i in results %}
+            <div class="col-12 mb-5 col-sm-3 d-flex justify-content-evenly">
+                <div class="card" style="width: 85%;">
+                    <img src="{{ i.course_image.url }}" class="card-img-top" width="250px" alt="...">
+                    <div class="card-body text-justify ">
+                      <h5 class="card-title">
+                        {{i.course_title}}
+                      </h5>
+                      <p class="card-text">
+                        {{i.course_desc}}
+                      </p>
+                      <a href="{% url 'course' i.id %}"class="btn p-0 m-0 btn-primary mb-5">View Details</a>
+
+                    </div>
+                </div>
+            </div>
+          {% endfor %}
+            
+        </div>
+        
+        </div>
+        <footer class="footer margin">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4 color">
+                  <h4>About Learn Wing</h4>
+                  <p>Udemy is the leading global marketplace for teaching and learning, connecting students everywhere to the world's best instruction anywhere.</p>
+                </div>
+                <div class="col-md-4 color">
+                  <h4>Links</h4>
+                  <div class="footer-links">
+                    <ul>
+                      <li><a href="#">Udemy for Business</a></li>
+                      <li><a href="#">Teach on Udemy</a></li>
+                      <li><a href="#">Get the app</a></li>
+                      <li><a href="#">About us</a></li>
+                      <li><a href="#">Contact us</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-4 color">
+                  <h4>Follow Us</h4>
+                  <div class="footer-social-icons">
+                    <ul>
+                      <li><a href="#"><i class>
+
+         jquery cdn
+         <script
+         src="https://code.jquery.com/jquery-3.6.3.min.js"
+         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+         crossorigin="anonymous"
+          src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+     ></script> 
+        <!-- fontawesome -->
+
+        <script
+            src="https://kit.fontawesome.com/4ebb318577.js"
+            crossorigin="anonymous"
+        ></script>
+        <!-- js bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js
+         "></script>
+        <!-- js -->
+        <script src="JS/script.js"></script>
+    </body>
+
+</html>

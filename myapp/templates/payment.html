@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+	</head>
+	<body>
+		<h6 class="fs-4 pb-2">Welcome {{ user.username}}</h6>
+		<h6 class="fs-4 pb-2">Category:{{ obj.main_course }}</h6>
+		<h6 class="fs-4 pb-5">Charge:{{obj.course_fee}}</h6>
+		<form action="charge/{{obj.id}}" method="POST" class="payment">
+			{% csrf_token %}
+			<script
+				src="https://checkout.razorpay.com/v1/checkout.js"
+				data-key="rzp_test_acgCaQhDp1w1uK"
+				data-amount="{{obj.course_fee}}00"
+				data-name="LearnWing"
+				data-description="Purchase Description"
+				data-image="vk.jpg"
+				data-netbanking="true"
+				data-description="Tron Legacy"
+				data-prefill.name="LearnWing"
+				data-prefill.email="learnwing@razorpay.com"
+				data-prefill.contact="8129705178"
+				data-notes.shopping_order_id="21"
+			></script>
+			<input type="hidden" name="amount" value="{{obj.course_fee}}" />
+			<!-- Add hidden input field to include the 'amount' value from session -->
+			<input type="hidden" name="shopping_order_id" value="21" />
+		</form>
+	</body>
+</html>

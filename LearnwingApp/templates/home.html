@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            rel="stylesheet"
+            id="bootstrap-css"
+        />
+    </head>
+    <body>
+        <h1>Admin Home</h1>
+        <div class="row">
+            <div class="col-sm-1">
+                <a href="{% url 'course_category' %}">Add category</a>
+                <a href="{% url 'addcourse' %}">Add Course</a>
+                <a href="{% url 'addsubcourse' %}">Add Sub Course</a>
+            </div>
+
+            <div class="col-sm">
+                <div>
+                    <form action="" method="POST">
+                        <table>
+                            {% csrf_token %}{{form.as_table}}
+                        </table>
+                        <input type="submit" value="add" />
+                    </form>
+                </div>
+                <div class="w-50 text-justify">
+                    <form
+                        action=""
+                        class="form-control w-75 mx-auto"
+                        method="POST"
+                        enctype="multipart/form-data"
+                    >
+                        <table>
+                            {% csrf_token %}{{courseform.as_table}}
+                        </table>
+                        <input type="submit" value="add" />
+                    </form>
+                </div>
+                <div class="w-50 text-justify">
+                    <form
+                        action=""
+                        class="form-control w-75 mx-auto"
+                        method="POST"
+                        enctype="multipart/form-data"
+                    >
+                        <table>
+                            {% csrf_token %}{{subcourseform.as_table}}
+                        </table>
+                        <input type="submit" value="add" />
+                    </form>
+                </div>
+
+                <div id="course" class="d-flex g-5">
+                    {% for i in data %}
+                    <div
+                        class="card mt-5 border border-secondary"
+                        style="width: 18rem"
+                    >
+                        <img
+                            class="card-img-top h-50"
+                            src="{{i.course_image.url}}"
+                            alt="Card image cap"
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Name : {{i.course_title}}
+                            </h5>
+                            <h5 class="">Price : {{i.course_fee}}</h5>
+                            <p>{{i.course_desc}}</p>
+                        </div>
+                        <a
+                            href="{% url 'edit' i.id %}"
+                            class="btn btn-primary w-25"
+                            >edit</a
+                        >
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

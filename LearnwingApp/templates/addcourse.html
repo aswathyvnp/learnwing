@@ -1,0 +1,186 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="icon" type="image/x-icon" href="./images/favicon.png" />
+		<!-- css bootstrap -->
+		<!-- <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css
+        "
+        /> -->
+
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+	</head>
+	<body>
+		<div>
+			<nav class="navbar navbar-expand-lg navbar-light newnav">
+				<div class="container-fluid">
+					<a class="navbar-brand fs-1" href="#">LEARN WING</a>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#myNavbar"
+						aria-controls="myNavbar"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link" href="#">Categories</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="adminpage">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">My Courses</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Wishlist</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Cart</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Login</a>
+							</li>
+							<li class="nav-item">
+								<a
+									class="nav-link"
+									href="{% url 'logoutPage' %}"
+									>LogOut</a
+								>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<!-- header end  -->
+		<div class="container-fluid p-0 m-0">
+			<div class="mt-5">
+				<a
+					class="btn text-white"
+					id="cat"
+					href="{% url 'course_category' %}"
+					>Add category</a
+				>
+				<a class="btn text-white" href="{% url 'addcourse' %}"
+					>Add Course</a
+				>
+				<a class="btn text-white" href="{% url 'addsubcourse' %}"
+					>Add Sub Course</a
+				>
+			</div>
+
+			<div class="w-50 p-5 mx-auto text-justify">
+				<form
+					action=""
+					class="form-control p-3 w-75 mx-auto"
+					method="POST"
+					enctype="multipart/form-data"
+				>
+					<table class="">
+						{% csrf_token %}{{courseform.as_table}}
+					</table>
+					<input type="submit" value="add" />
+				</form>
+			</div>
+
+			<div id="course" class="d-flex g-5">
+				{% for i in data %}
+				<div
+					class="card mt-5 border border-secondary"
+					style="width: 18rem"
+				>
+					<img
+						class="card-img-top h-50"
+						src="{{i.course_image.url}}"
+						alt="Card image cap"
+					/>
+					<div class="card-body">
+						<h5 class="card-title">Name : {{i.course_title}}</h5>
+						<h5 class="">Price : {{i.course_fee}}</h5>
+						<p>{{i.course_desc}}</p>
+					</div>
+					<a href="{% url 'edit' i.id %}" class="btn btn-primary w-25"
+						>edit</a
+					>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		<!-- footer   -->
+		{% comment %}
+		<footer class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 color">
+						<h4>About Learn Wing</h4>
+						<p>
+							Udemy is the leading global marketplace for teaching
+							and learning, connecting students everywhere to the
+							world's best instruction anywhere.
+						</p>
+					</div>
+					<div class="col-md-4 color">
+						<h4>Links</h4>
+						<div class="footer-links">
+							<ul>
+								<li><a href="#">Udemy for Business</a></li>
+								<li><a href="#">Teach on Udemy</a></li>
+								<li><a href="#">Get the app</a></li>
+								<li><a href="#">About us</a></li>
+								<li><a href="#">Contact us</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-4 color">
+						<h4>Follow Us</h4>
+						<div class="footer-social-icons">
+							<ul>
+								<li><a href="#"></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		{% endcomment %}
+
+		<!-- jquery cdn -->
+		<script
+			src="https://code.jquery.com/jquery-3.6.3.min.js"
+			integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+			crossorigin="anonymous"
+			src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+		></script>
+		<!-- footstrap -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js
+         "></script>
+		<!-- js -->
+		<script src="JS/script.js"></script>
+
+		<script
+			src="https://kit.fontawesome.com/4ebb318577.js"
+			crossorigin="anonymous"
+		></script>
+	</body>
+</html>
